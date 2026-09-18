@@ -87,9 +87,13 @@ h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.1; margin: 0 0 14px; lett
 .summary { background: var(--paper); border: 1px solid var(--hairline); border-left: 6px solid var(--family); border-radius: 16px; padding: 4px 22px; margin: 22px 0; }
 .back-link { display: inline-block; margin-top: 40px; font-weight: 800; }
 
-/* The two sides of a setup, side by side: the whole idea in one glance. */
-.sides { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-.sides .steps { grid-template-columns: 1fr; gap: 14px; }
+/* The two sides of a setup, stacked: each side gets the full width, so a step
+   reads as a sentence instead of a three-word-per-line ribbon. */
+.sides { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: start; }
+/* Within a side there IS room to read across, so the steps go side by side. */
+.sides .steps { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.sides .side-their .steps { grid-template-columns: repeat(2, 1fr); }
+.sides .steps em { font-style: normal; font-weight: 800; color: var(--family-deep); display: block; margin-top: 6px; }
 .side-head { margin: 0 0 16px; font-size: 15px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .side-you { color: var(--family-deep); }
 .side-them { color: var(--friends); }
@@ -102,7 +106,10 @@ h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.1; margin: 0 0 14px; lett
 @media (max-width: 860px) {
   .hero-grid, .pricing { grid-template-columns: 1fr; }
   .cards, .steps { grid-template-columns: 1fr; }
-  .sides { grid-template-columns: 1fr; gap: 34px; }
+  /* Must out-specify `.sides .steps` above, or the steps stay three-across and
+     become the narrow ribbon this layout exists to avoid. */
+  .sides .steps, .sides .side-their .steps { grid-template-columns: 1fr; }
+  .sides { gap: 34px; }
   .shots { grid-template-columns: repeat(2, 1fr); }
   .pricing { padding: 30px; }
 }
