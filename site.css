@@ -87,9 +87,22 @@ h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.1; margin: 0 0 14px; lett
 .summary { background: var(--paper); border: 1px solid var(--hairline); border-left: 6px solid var(--family); border-radius: 16px; padding: 4px 22px; margin: 22px 0; }
 .back-link { display: inline-block; margin-top: 40px; font-weight: 800; }
 
+/* The two sides of a setup, side by side: the whole idea in one glance. */
+.sides { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.sides .steps { grid-template-columns: 1fr; gap: 14px; }
+.side-head { margin: 0 0 16px; font-size: 15px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.side-you { color: var(--family-deep); }
+.side-them { color: var(--friends); }
+.side-you ~ .steps li::before { background: var(--family); }
+.side-them ~ .steps li::before { background: var(--friends); }
+.how-note { margin: 28px 0 0; color: var(--ink-soft); font-size: 18px; text-align: center; }
+.how-shot { margin: 36px 0 0; text-align: center; }
+.how-shot img { width: min(320px, 100%); height: auto; border-radius: 26px; border: 1px solid var(--hairline); box-shadow: 0 16px 30px -18px rgba(43,38,32,.4); }
+
 @media (max-width: 860px) {
   .hero-grid, .pricing { grid-template-columns: 1fr; }
   .cards, .steps { grid-template-columns: 1fr; }
+  .sides { grid-template-columns: 1fr; gap: 34px; }
   .shots { grid-template-columns: repeat(2, 1fr); }
   .pricing { padding: 30px; }
 }
